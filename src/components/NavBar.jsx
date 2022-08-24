@@ -9,11 +9,12 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CartWidget from "./CartWidget";
 
 
 export default function NavBar(){
-    return(
-        <Box sx={{ flexGrow: 1 }}>
+    return( <>
+      <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
             <IconButton
@@ -32,11 +33,13 @@ export default function NavBar(){
             <Button color="inherit">Novedades</Button>
             <Button color="inherit">Productos</Button>
             <Button color="inherit">Ofertas</Button>
-            <Button startIcon={<ShoppingCartIcon color="action"/>}></Button>
+            <CartWidget/>        
             <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
       </Box>
-   
+
+      
+      </>
     )
 }

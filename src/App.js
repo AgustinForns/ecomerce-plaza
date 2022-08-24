@@ -9,6 +9,7 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
 import ItemListContainer from './components/ItemListContainer';
 import { border } from '@mui/system';
+import ItemCount from './components/ItemCount';
 
 
 function App() {
@@ -18,14 +19,8 @@ function App() {
   return (
     <div className='App'>
       <NavBar/>
-      <ItemListContainer saludo={saludo}/>
-      <div className='body'>
-
-      </div>
-
-      <div className='footer'>
-
-      </div>
+      <ItemListContainer saludo={saludo}/> 
+      <ItemCount stock={10} initial={0}/>
 
     </div>
    

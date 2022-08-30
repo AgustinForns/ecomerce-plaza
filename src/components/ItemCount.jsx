@@ -8,22 +8,11 @@ import Typography from '@mui/material/Typography';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-export default function ItemCount({stock, initial}) {
+export default function ItemCount({stock, initial, onAdd}) {
 
   
     const [contador, setContador] = useState(initial);
 
-    const add = () => {
-        if (contador < stock) {
-            setContador(contador + 1);
-        }  
-    }
-
-    const rest = () => {
-        if (contador > 0) {
-            setContador(contador - 1);
-        }
-    }
 
     console.log(contador)
 
@@ -44,19 +33,25 @@ export default function ItemCount({stock, initial}) {
             Descripcion
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button startIcon={<AddCircleIcon/>} size="small" onClick={() => {
-            if (contador < stock) {
-                setContador(contador + 1);
-            }  
-          }}></Button>
-          <div>Cant: {contador} </div>
-          <Button startIcon={<RemoveIcon/>} size="small" onClick={()=>{
-               if (contador > 0) {
-                setContador(contador - 1);
-            }
-          }}></Button>
+        <CardActions >
+                <Button  startIcon={<AddCircleIcon/>} size="small" onClick={() => {
+                  if (contador < stock) {
+                      setContador(contador + 1);
+                  }  
+                }}></Button>
+                <div>Cant: {contador} </div>
+                <Button startIcon={<RemoveIcon/>} size="small" onClick={ () => {
+                  if (contador > 0) {
+                      setContador(contador - 1);
+                  }  
+                }}></Button>
+          
         </CardActions>
+        <Button onClick={() =>{
+          console.log(contador)
+          onAdd(contador)
+          
+        }}>Agregar al carrito</Button>
     </Card>
     </>
     );

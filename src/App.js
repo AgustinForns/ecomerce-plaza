@@ -14,13 +14,17 @@ import ItemCount from './components/ItemCount';
 
 function App() {
   const saludo = () =>{
-    return <div style={{color:"blue", backgroundColor: "gray", border: 1, borderRadius: 50}} >A tu alcance lo que más necesitas!</ div>
+    return <div style={{color:"blue", backgroundColor: "gray", border: 1, borderRadius: 50}}>A tu alcance lo que más necesitas!</ div>
+  }
+  const onAdd = (contador) =>{
+    console.log(contador)
+    alert(`Vas a comprar ${contador} productos`)
   }
   return (
     <div className='App'>
       <NavBar/>
       <ItemListContainer saludo={saludo}/> 
-      <ItemCount stock={10} initial={0}/>
+      <ItemCount stock={10} initial={1} onAdd={onAdd} />
 
     </div>
    

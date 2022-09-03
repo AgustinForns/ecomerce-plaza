@@ -10,7 +10,9 @@ import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
 import ItemListContainer from './components/ItemListContainer';
 import { border } from '@mui/system';
 import ItemCount from './components/ItemCount';
-
+import ItemDetailContainer from './components/ItemDetailContainer';
+import ItemDetail from './components/ItemDetail';
+import React, {useState, useEffect} from "react"
 
 function App() {
   const saludo = () =>{
@@ -20,11 +22,14 @@ function App() {
     console.log(contador)
     alert(`Vas a comprar ${contador} productos`)
   }
+
+
   return (
     <div className='App'>
       <NavBar/>
-      <ItemListContainer saludo={saludo}/> 
-      <ItemCount stock={10} initial={1} onAdd={onAdd} />
+      {/* <ItemListContainer saludo={saludo}/>  */}
+      {/* <ItemCount stock={10} initial={1} onAdd={onAdd} /> */}
+      <ItemDetailContainer onAdd={onAdd}/>
 
     </div>
    

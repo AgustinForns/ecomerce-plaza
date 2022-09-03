@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-export default function ItemCount({stock, initial, onAdd}) {
+export default function ItemCount({stock, initial, onAdd, item}) {
 
   
     const [contador, setContador] = useState(initial);
@@ -23,14 +23,14 @@ export default function ItemCount({stock, initial, onAdd}) {
           component="img"
           height="140"
           /* image="" */
-          alt="Producto1"
+          alt={item.descripcion}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Producto1
+            {item.id}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Descripcion
+            {item.nombre}
           </Typography>
         </CardContent>
         <CardActions >

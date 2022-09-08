@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import Item from "./Item";
 
 
-export default function ItemList({items}){
+export default function ItemList({items, onAdd}){
     
     
     console.log(items)
@@ -10,9 +10,15 @@ export default function ItemList({items}){
   
     return(
     <>      
-        {items.map((item)=>(  
-            <Item key={item.id} item={item}/>       
-        ))}       
+        {
+        items ?     
+        (items.map((item)=>(  
+            <Item key={item.idproduct} item={item} onAdd={onAdd}/>       
+        ))
+        ):(
+        <p>Loading...</p>
+        )
+        }       
     </>
     )
 }

@@ -6,7 +6,7 @@ export default function ItemDetail({item, onAdd}){
     return(
         <>
     
-        {item.id ? (
+        {item.idproduct ? (
             <ItemCount stock={10} initial={1} onAdd={onAdd} item ={item}/>
         ):(
             <p>Loading...</p>

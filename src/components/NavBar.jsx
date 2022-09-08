@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CartWidget from "./CartWidget";
-
+import {Link} from "react-router-dom";
 
 export default function NavBar(){
     return( <>
@@ -30,9 +30,12 @@ export default function NavBar(){
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Bienvenido a Plaza!
             </Typography>
-            <Button color="inherit">Novedades</Button>
-            <Button color="inherit">Productos</Button>
-            <Button color="inherit">Ofertas</Button>
+            <Button color="inherit"><Link to="/"> Home </Link></Button>
+            <Button color="inherit"><Link to="/category/Bazar"> Bazar </Link></Button>
+            <Button color="inherit"><Link to="/category/Decoracion"> Decoración </Link></Button>
+            <Button color="inherit"><Link to="/category/Vestimenta"> Vestimenta </Link></Button>
+            <Button color="inherit"><Link to="/category/RopaDeCama"> Ropa de cama </Link></Button>
+            {/* <Button color="inherit"><Link to="/product/:idproduct"> Oferta del dia </Link></Button> */}
             <CartWidget/>        
             <Button color="inherit">Login</Button>
           </Toolbar>

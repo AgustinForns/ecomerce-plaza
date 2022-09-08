@@ -7,6 +7,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveIcon from '@mui/icons-material/Remove';
+import ItemDetailContainer from "./ItemDetailContainer";
+import {Link} from "react-router-dom";
+
 
 export default function ItemCount({stock, initial, onAdd, item}) {
 
@@ -27,7 +30,7 @@ export default function ItemCount({stock, initial, onAdd, item}) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {item.id}
+            {item.idproduct}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {item.nombre}
@@ -52,6 +55,7 @@ export default function ItemCount({stock, initial, onAdd, item}) {
           onAdd(contador)
           
         }}>Agregar al carrito</Button>
+        <Button><Link to={`/product/${item.idproduct}`} >Ver detalle</Link></Button>
     </Card>
     </>
     );

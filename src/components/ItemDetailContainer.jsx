@@ -1,30 +1,48 @@
 import React, {useState, useEffect} from "react"
 import ItemDetail from "./ItemDetail";
+import {useParams} from "react-router-dom";
 
 
-export default function ItemDetailContainer({onAdd}){
-
+export default function ItemDetailContainer({onAdd, productos}){
+        const {idcategory, idproduct} = useParams ();
+        console.log(productos)
+        console.log(idproduct)
+        console.log(productos.find((producto) => producto.idproduct == idproduct))
         const[item, setItem] = useState({})
+
+        
     
         let promesaItem = new Promise((res, rej) =>{
             setTimeout(() => {
-              res( {id:1 , nombre: "item1", descripcion: "descripcion1", precio: 100})
+                res(productos.find((producto) => producto.idproduct == idproduct))
             }, 2000);
         }); 
         
         useEffect(()=>{
-             promesaItem.then((res) =>{
-            setItem(res) 
-                   
-        },[])
+            promesaItem.then((res) =>{
+                (
+                    !idproduct ? (
+                        console.log("No hay oferta")
+                    ) : (
+                        setItem(res)
+                    )
+                )           
+        },[idproduct])
         })
        
       
     
     
     return(
-        <>
-            <ItemDetail item={item} onAdd={onAdd}/>
+        <>  
+        { item ? (
+              <ItemDetail item={item} onAdd={onAdd}/>
+        ) : (
+            <p>Loading..</p>
+        )
+
+        }
+          
         </>
     )
 }

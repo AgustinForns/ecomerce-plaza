@@ -1,15 +1,17 @@
 import React, {useState, useEffect} from "react"
+import ItemCount from "./ItemCount";
 
 
-export default function Item({item}){
+export default function Item({item, onAdd}){
     return(
         <>
-    
-        <div>
-            <p> id: {item.id}</p>
-            <p> Nombre: {item.nombre}</p>
-            <p> Precio: {item.precio}</p> 
-        </div>
+         {item ? (
+            <ItemCount stock={10} initial={1} onAdd={onAdd} item ={item}/>
+            
+        ):(
+            <p>Loading...</p>
+        )}
+       
        
         </>
     )

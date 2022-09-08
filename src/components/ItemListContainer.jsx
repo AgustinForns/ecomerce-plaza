@@ -1,34 +1,46 @@
 import React, {useState, useEffect} from "react"
 import ItemList from "./ItemList"
+import {useParams} from "react-router-dom";
 
 
-export default function ItemListContainer({saludo}){
+
+export default function ItemListContainer({saludo, onAdd, productos}){
     
+    const {idcategory, idproduct} = useParams ();
     const[items, setItems] = useState([])
 
     let promesaItems = new Promise((res, rej) =>{
-
         setTimeout(() => {
-          res( [
-            {id:1 , nombre: "item1", descripcion: "descripcion1", precio: 100},
-            {id:2 , nombre: "item2", descripcion: "descripcion2", precio: 200},
-            {id:3 , nombre: "item3", descripcion: "descripcion3", precio: 300},
-        ])
+            res(productos)
         }, 3000);
     }); 
+    console.log(items)
 
     useEffect(() =>{
         promesaItems.then((res) =>{
-            setItems(res)          
+            (!idcategory ? (
+                //HOME
+                setItems(res)
+                ) : (
+                //EN UN CATEGORIA PUNTUAL
+                setItems(res.filter((product) => product.idcategory == idcategory))
+                )
+            )    
         })
-    }, [])
+    }, [idcategory])
     
     return(
         <>
         <h1>{saludo()}</h1>
-        <div>
-            <ItemList items={items}/>
-        </div>
+        {
+            (items.length > 0) ? (
+                <ItemList items={items} onAdd={onAdd}/>
+            ) : (
+                <p>Loading..</p>
+            )
+        }
+            
+        
         </>
     )
 }

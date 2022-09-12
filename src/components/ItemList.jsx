@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react"
 import Item from "./Item";
+import ItemDetail from "./ItemDetail";
 
 
-export default function ItemList({items, onAdd}){
+export default function ItemList({items}){
     
     
     console.log(items)
@@ -13,7 +14,7 @@ export default function ItemList({items, onAdd}){
         {
         items ?     
         (items.map((item)=>(  
-            <Item key={item.idproduct} item={item} onAdd={onAdd}/>       
+            <ItemDetail key={item.idproduct} item={item}/>       
         ))
         ):(
         <p>Loading...</p>

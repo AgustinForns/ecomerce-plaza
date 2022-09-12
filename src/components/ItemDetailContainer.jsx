@@ -3,7 +3,7 @@ import ItemDetail from "./ItemDetail";
 import {useParams} from "react-router-dom";
 
 
-export default function ItemDetailContainer({onAdd, productos}){
+export default function ItemDetailContainer({productos}){
         const {idcategory, idproduct} = useParams ();
         console.log(productos)
         console.log(idproduct)
@@ -36,7 +36,7 @@ export default function ItemDetailContainer({onAdd, productos}){
     return(
         <>  
         { item ? (
-              <ItemDetail item={item} onAdd={onAdd}/>
+              <ItemDetail item={item} />
         ) : (
             <p>Loading..</p>
         )

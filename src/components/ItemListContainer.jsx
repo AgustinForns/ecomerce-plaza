@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 
 
 
-export default function ItemListContainer({saludo, onAdd, productos}){
+export default function ItemListContainer({saludo, productos}){
     
     const {idcategory, idproduct} = useParams ();
     const[items, setItems] = useState([])
@@ -34,7 +34,7 @@ export default function ItemListContainer({saludo, onAdd, productos}){
         <h1>{saludo()}</h1>
         {
             (items.length > 0) ? (
-                <ItemList items={items} onAdd={onAdd}/>
+                <ItemList items={items} />
             ) : (
                 <p>Loading..</p>
             )

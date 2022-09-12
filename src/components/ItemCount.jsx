@@ -11,10 +11,10 @@ import ItemDetailContainer from "./ItemDetailContainer";
 import {Link} from "react-router-dom";
 
 
-export default function ItemCount({stock, initial, onAdd, item}) {
+export default function ItemCount({onAdd, item}) {
 
   
-    const [contador, setContador] = useState(initial);
+    const [contador, setContador] = useState(item.initial);
 
 
     console.log(contador)
@@ -38,7 +38,7 @@ export default function ItemCount({stock, initial, onAdd, item}) {
         </CardContent>
         <CardActions >
                 <Button  startIcon={<AddCircleIcon/>} size="small" onClick={() => {
-                  if (contador < stock) {
+                  if (contador < item.stock) {
                       setContador(contador + 1);
                   }  
                 }}></Button>
@@ -50,11 +50,13 @@ export default function ItemCount({stock, initial, onAdd, item}) {
                 }}></Button>
           
         </CardActions>
-        <Button onClick={() =>{
+        <Button 
+        
+        onClick={() =>{
           console.log(contador)
           onAdd(contador)
           
-        }}>Agregar al carrito</Button>
+        }}><Link to="/cart" >Agregar al carrito</Link></Button>
         <Button><Link to={`/product/${item.idproduct}`} >Ver detalle</Link></Button>
     </Card>
     </>

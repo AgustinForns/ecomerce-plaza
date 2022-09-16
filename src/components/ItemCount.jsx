@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useContext} from "react"
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,15 +9,14 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ItemDetailContainer from "./ItemDetailContainer";
 import {Link} from "react-router-dom";
+import CartContext, { contexto } from "./CartContext";
 
 
-export default function ItemCount({onAdd, item}) {
 
-  
+export default function ItemCount({item}) {
+
+    const {addToCart} = useContext(contexto)
     const [contador, setContador] = useState(item.initial);
-
-
-    console.log(contador)
 
     return (
     <>
@@ -34,6 +33,12 @@ export default function ItemCount({onAdd, item}) {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {item.nombre}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Precio: {item.precio}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Stock: {item.stock}
           </Typography>
         </CardContent>
         <CardActions >
@@ -52,12 +57,14 @@ export default function ItemCount({onAdd, item}) {
         </CardActions>
         <Button 
         
-        onClick={() =>{
-          console.log(contador)
-          onAdd(contador)
-          
-        }}><Link to="/cart" >Agregar al carrito</Link></Button>
-        <Button><Link to={`/product/${item.idproduct}`} >Ver detalle</Link></Button>
+        onClick={() =>{ 
+          if (contador>0) {
+            addToCart(item, contador)  
+          }
+              
+        }}>Agregar al carrito</Button>
+        <Button ><Link to="/cart" >Ver carrito</Link></Button>
+        <Button><Link to={`/product/${item.idproduct}`} >Ver detalle producto</Link></Button>
     </Card>
     </>
     );

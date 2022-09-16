@@ -14,7 +14,7 @@ export default function ItemListContainer({saludo, productos}){
             res(productos)
         }, 3000);
     }); 
-    console.log(items)
+  
 
     useEffect(() =>{
         promesaItems.then((res) =>{

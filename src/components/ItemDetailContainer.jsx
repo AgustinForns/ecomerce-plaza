@@ -5,9 +5,6 @@ import {useParams} from "react-router-dom";
 
 export default function ItemDetailContainer({productos}){
         const {idcategory, idproduct} = useParams ();
-        console.log(productos)
-        console.log(idproduct)
-        console.log(productos.find((producto) => producto.idproduct == idproduct))
         const[item, setItem] = useState({})
 
         

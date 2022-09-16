@@ -14,6 +14,8 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 import ItemDetail from './components/ItemDetail';
 import React, {useState, useEffect} from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import CartContext from './components/CartContext';
 import Cart from './components/Cart';
 
 const productosHC = [
@@ -33,27 +35,23 @@ function App() {
   const saludo = () =>{
     return <div style={{color:"blue", backgroundColor: "gray", border: 1, borderRadius: 50}}>A tu alcance lo que más necesitas!</ div>
   }
-  const onAdd = (contador) =>{
-    console.log(contador)
-    alert(`Vas a comprar ${contador} productos`)
-  }
+ 
 
-  const itemIngresado = (itemIngresado) =>{
-    return itemIngresado
-  }
 
 
   return (
     <div className='App'>
-      <BrowserRouter>
-      <NavBar/> {/* pongoi los componentes que van siempre */}
-        <Routes>
-          <Route path='/' element={<ItemListContainer saludo={saludo} productos={productosHC}/>}></Route>
-          <Route path='/cart' element={<Cart/>}></Route>
-          <Route path='/category/:idcategory' element={<ItemListContainer saludo={saludo}  productos={productosHC}/>}></Route>
-          <Route path='/product/:idproduct' element={<ItemDetailContainer productos={productosHC} />}></Route>
-        </Routes>
-      </BrowserRouter>
+     <CartContext>
+       <BrowserRouter>
+       <NavBar/> {/* pongoi los componentes que van siempre */}
+         <Routes>
+           <Route path='/' element={<ItemListContainer saludo={saludo} productos={productosHC}/>}></Route>
+           <Route path='/cart' element={<Cart/>}></Route>
+           <Route path='/category/:idcategory' element={<ItemListContainer saludo={saludo}  productos={productosHC}/>}></Route>
+           <Route path='/product/:idproduct' element={<ItemDetailContainer productos={productosHC} />}></Route>
+         </Routes>
+       </BrowserRouter>
+     </CartContext>
       {/* <NavBar/> */}
       {/* <ItemListContainer saludo={saludo}/>  */}
       {/* <ItemCount stock={10} initial={1} onAdd={onAdd} /> */}

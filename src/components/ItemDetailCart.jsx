@@ -7,13 +7,15 @@ export default function ItemDetailCart({item}){
    
     return(
         <>
-            {item ? (
-                <ItemCart  item ={item}/>
-                    
-            ):(
-                <p>Loading...</p>
-            )}
-                     
+          <div style={{margin:`10px`, padding:`20px`}}>
+              {item ? (
+                  <ItemCart  item ={item} />
+                      
+              ):(
+                  <p>Loading...</p>
+              )}
+                 
+          </div>      
         </>
     )
 }

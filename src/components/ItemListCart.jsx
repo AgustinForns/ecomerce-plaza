@@ -6,20 +6,25 @@ import ItemDetailCart from "./ItemDetailCart";
 
 export default function ItemListCart({productosAgregados}){
     
-
+    console.log(productosAgregados)
     
   
     return(
     <>      
-        {
-        productosAgregados ?     
-        (productosAgregados.map((item)=>(  
-            <ItemDetailCart key={item.idproduct} item={item}/>       
-        ))
-        ):(
-        <p>Loading...</p>
-        )
-        }       
+       
+        <div style={{display:"flex"}}>
+             {
+             productosAgregados ?     
+             (productosAgregados.map((item)=>(  
+                 <ItemDetailCart key={item.idproduct} item={item}/> 
+                       
+             ))
+             ):(
+             <p>Loading...</p>
+             )
+             }       
+            
+        </div>
     </>
     )
 }

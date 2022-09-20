@@ -7,15 +7,17 @@ export default function ItemList({items}){
   
     return(
     <>      
-        {
-        items ?     
-        (items.map((item)=>(  
-            <ItemDetail key={item.idproduct} item={item}/>       
-        ))
-        ):(
-        <p>Loading...</p>
-        )
-        }       
+     <div style={{display: `flex`, flexWrap:"wrap"}}>
+           {
+           items ?     
+           (items.map((item)=>(  
+               <ItemDetail key={item.idproduct} item={item}/>       
+           ))
+           ):(
+           <p>Loading...</p>
+           )
+           }     
+     </div>  
     </>
     )
 }

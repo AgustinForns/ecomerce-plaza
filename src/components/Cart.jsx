@@ -4,18 +4,36 @@ import { contexto } from "./CartContext";
 import ItemListCart from "./ItemListCart";
 import { useContext } from "react"
 import { Button } from "@mui/material";
+import CartSummary from "./CartSummary";
 
 export default function Cart(){
-    const {productosAgregados, clear} = useContext(contexto);
+    const {productosAgregados, clear, totalPrice, setTotalPrice} = useContext(contexto);
+    console.log(productosAgregados.length==0)
     return(
         <>
-            <Button
-            onClick={()=>{
-                clear()
-            }}
-            >LIMPIAR CARRO</Button>
-            <ItemListCart productosAgregados={productosAgregados}/>
-           
+      <div>
+        
+               {                 
+                      ((productosAgregados.length)==0) ?   (
+                          <div style={{margin:"50px", fontSize:"30px"}}><Link to={"/"}>No tienes nada en la canasta. Haz click aqui y ve a buscar lo que necesitas.</Link></div>
+                      ):( 
+                           <>  
+                              <Button
+                              onClick={()=>{
+                                  clear()
+                              }}
+                              >LIMPIAR CARRO</Button>
+                              
+                              <CartSummary totalPrice={totalPrice}/>
+                              
+                              <ItemListCart productosAgregados={productosAgregados}/>
+                           </>
+                      )
+                  
+              }
+      </div>
+            
+ 
             
         </>
 

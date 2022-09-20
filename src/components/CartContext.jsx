@@ -10,25 +10,33 @@ export default function CartContext({children}){
     
     const[quantity, setQuantity] = useState(0)
     const [productosAgregados, setProductosAgregados] = useState ([])
+    const [totalPrice, setTotalPrice] = useState(0)
+    useEffect(() =>{
+
+    },[])
 
     const addToCart = (item, addQuantity) =>{
-        //MEJORAR ESTA LINEA- ES UN EJEMLPO NO USAR EN PRODUCCION
-        /* setCart([...cart, product]) */
-        setQuantity(addQuantity)
+        console.log(addQuantity)
+   
 
         if (productosAgregados.some( productoAgregado => productoAgregado.idproduct == item.idproduct)) {
             let productoAñadir = productosAgregados.find((producto) => producto.idproduct == item.idproduct )
-            if ((productoAñadir.quantityBuy + quantity)> productoAñadir.stock) {
+            if ((productoAñadir.quantityBuy + addQuantity)> productoAñadir.stock) {
                 alert("no se pueden añadir mas productos porque no hay stock")
             } else {
-               ( productosAgregados.find((producto) => producto.idproduct == item.idproduct )).quantityBuy += quantity
+                
+                setProductosAgregados(
+                    [...(productosAgregados.filter((product) => product.idproduct !== item.idproduct)), {...item, quantityBuy:((( productosAgregados.find((producto) => producto.idproduct == item.idproduct )).quantityBuy) + addQuantity) }]
+                    /* ( productosAgregados.find((producto) => producto.idproduct == item.idproduct )).quantityBuy += quantity */
+                )
+               
             }
            
         }else{
+           
             setProductosAgregados([...productosAgregados, {...item, quantityBuy: addQuantity}] )
+            console.log(productosAgregados)
         }
-    
-
     }
 
     const removeItem = (item) =>{    
@@ -38,13 +46,38 @@ export default function CartContext({children}){
     const clear = () => {
         setProductosAgregados([]);
       };
+      
 
 
+
+    useEffect(() =>{
+        let total = 0
+        let totalItem = 0
+        productosAgregados.forEach((productoAgregado) => {
+            totalItem = ((productoAgregado.precio)*(productoAgregado.quantityBuy)) 
+            total += totalItem
+           
+        });
+        setTotalPrice(total)
+     
+
+    },[productosAgregados])
+
+    const summaryPrice = () => {
+        let total = 0
+        let totalItem = 0
+        productosAgregados.forEach((productoAgregado) => {
+            totalItem = ((productoAgregado.precio)*(productoAgregado.quantityBuy)) 
+            total += totalItem
+           
+        });
+        setTotalPrice(total)
+    }
 
     return(
         <>
         
-        <contexto.Provider value={{productosAgregados, setProductosAgregados, removeItem, addToCart, clear, quantity, setQuantity}}>
+        <contexto.Provider value={{productosAgregados, setProductosAgregados, removeItem, addToCart, clear, quantity, setQuantity, totalPrice, setTotalPrice,  summaryPrice}}>
                 {children}
                 
         </contexto.Provider>

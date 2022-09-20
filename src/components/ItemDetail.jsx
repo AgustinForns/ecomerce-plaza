@@ -6,12 +6,14 @@ export default function ItemDetail({item}){
    
     return(
         <>
-    
-        {item.idproduct ? (
-            <ItemCount item ={item}/>
-        ):(
-            <p>Loading...</p>
-        )}
+   <div style={{margin:"10px", padding:"20px"}}>
+     
+         {item.idproduct ? (
+             <ItemCount item ={item}/>
+         ):(
+             <p>Loading...</p>
+         )}
+   </div >
         </>
     )
 }

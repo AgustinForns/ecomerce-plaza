@@ -11,8 +11,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CartWidget from "./CartWidget";
 import {Link} from "react-router-dom";
+import { useContext } from "react"
+import { contexto } from "./CartContext";
+
 
 export default function NavBar(){
+    
     return( <>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">

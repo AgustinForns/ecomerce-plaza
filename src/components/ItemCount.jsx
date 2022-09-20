@@ -15,12 +15,12 @@ import CartContext, { contexto } from "./CartContext";
 
 export default function ItemCount({item}) {
 
-    const {addToCart} = useContext(contexto)
+    const {addToCart, summaryPrice} = useContext(contexto)
     const [contador, setContador] = useState(item.initial);
 
     return (
     <>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, justifyContent: `center` }}>
         <CardMedia
           component="img"
           height="140"
@@ -35,31 +35,34 @@ export default function ItemCount({item}) {
             {item.nombre}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Precio: {item.precio}
+            Precio: ${item.precio}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Stock: {item.stock}
           </Typography>
         </CardContent>
-        <CardActions >
-                <Button  startIcon={<AddCircleIcon/>} size="small" onClick={() => {
-                  if (contador < item.stock) {
-                      setContador(contador + 1);
-                  }  
-                }}></Button>
-                <div>Cant: {contador} </div>
-                <Button startIcon={<RemoveIcon/>} size="small" onClick={ () => {
-                  if (contador > 0) {
-                      setContador(contador - 1);
-                  }  
-                }}></Button>
-          
+        <CardActions sx={{justifyContent: `center` }}>
+                  <Button  startIcon={<AddCircleIcon/>} size="small" onClick={() => {
+                    if (contador < item.stock) {
+                        setContador(contador + 1);
+                    }  
+                  }}></Button>
+                  <div>Cant: {contador} </div>
+                  <Button startIcon={<RemoveIcon/>} size="small" onClick={ () => {
+                    if (contador > 0) {
+                        setContador(contador - 1);
+                    }  
+                  }}></Button>
+            
         </CardActions>
+      
         <Button 
         
         onClick={() =>{ 
           if (contador>0) {
-            addToCart(item, contador)  
+            addToCart(item, contador) 
+            console.log(contador)
+            /* summaryPrice() */
           }
               
         }}>Agregar al carrito</Button>

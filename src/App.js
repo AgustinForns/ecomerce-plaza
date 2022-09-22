@@ -12,13 +12,15 @@ import { border } from '@mui/system';
 import ItemCount from './components/ItemCount';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import ItemDetail from './components/ItemDetail';
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useContext} from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { contexto } from "./components/CartContext";
+import CartContext from "./components/CartContext";
+import Cart from "./components/Cart";
+import {getFirestore, doc, collection, getDocs} from "firebase/firestore"
 
-import CartContext from './components/CartContext';
-import Cart from './components/Cart';
 
-const productosHC = [
+/* const productosHC = [
   {idproduct:1 , nombre: "Vaso de vidrio", descripcion: "Vaso ideal para reuniones informales", precio: 100, idcategory:"Bazar", stock:10, initial:2},
   {idproduct:2 , nombre: "Taza de cerámica", descripcion: "Taza perfecta para tomar el te en ocasiones especiales", precio: 200, idcategory:"Bazar", stock:2, initial:0},
   {idproduct:3 , nombre: "Plato de vidrio", descripcion: "Uso diario e informal", precio: 300, idcategory:"Bazar", stock:9, initial:0},
@@ -29,9 +31,50 @@ const productosHC = [
 ]
 
 
-
+ */
 
 function App() {
+
+/*   const {productos} = useContext(contexto);
+  console.log(productos)
+ */
+
+  const[productos, setProductos] = useState([]);
+
+    useEffect(() => {
+        const db = getFirestore();
+        const collectionRef = collection(db, `products` );
+        getDocs(collectionRef).then((res)=>{
+
+        /*     let productosLimpios = []
+            res.docs.forEach((item) => {
+                console.log(item)
+                const obejtoLimpio ={...item.data(), id: item.id}
+                console.log(obejtoLimpio)
+                productosLimpios.push(obejtoLimpio)
+            })
+            setProductos(productosLimpios)
+ */
+            //const productosLimpios = res.docs
+
+            //const misObjetos = {...res.data(), id: res.id};
+            //setProductos(misObjetos)
+
+            //CON MAP
+            let productosLimpios = res.docs.map((item) => {
+                
+                return {...item.data(), idproduct: item.id} // el return del map cambia/remplaza
+                
+            })
+            setProductos(productosLimpios)
+            console.log(productosLimpios)
+
+            
+        }).catch((e)=>{
+            console.log("error")
+        })
+    },[])
+  
   const saludo = () =>{
     return <div style={{color:"blue", backgroundColor: "gray", border: 1, borderRadius: 50}}>A tu alcance lo que más necesitas!</ div>
   }
@@ -41,17 +84,19 @@ function App() {
 
   return (
     <div className='App'>
-     <CartContext>
-       <BrowserRouter>
-       <NavBar/> {/* pongoi los componentes que van siempre */}
-         <Routes>
-           <Route path='/' element={<ItemListContainer saludo={saludo} productos={productosHC}/>}></Route>
-           <Route path='/cart' element={<Cart/>}></Route>
-           <Route path='/category/:idcategory' element={<ItemListContainer saludo={saludo}  productos={productosHC}/>}></Route>
-           <Route path='/product/:idproduct' element={<ItemDetailContainer productos={productosHC} />}></Route>
-         </Routes>
-       </BrowserRouter>
-     </CartContext>
+
+      <CartContext>
+        <BrowserRouter>
+        <NavBar/> {/* pongoi los componentes que van siempre */}
+          <Routes>
+            <Route path='/' element={<ItemListContainer saludo={saludo} productos={productos}/>}></Route>
+            <Route path='/cart' element={<Cart/>}></Route>
+            <Route path='/category/:idcategory' element={<ItemListContainer saludo={saludo}  productos={productos}/>}></Route>
+            <Route path='/product/:idproduct' element={<ItemDetailContainer productos={productos} />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </CartContext>
+
       {/* <NavBar/> */}
       {/* <ItemListContainer saludo={saludo}/>  */}
       {/* <ItemCount stock={10} initial={1} onAdd={onAdd} /> */}

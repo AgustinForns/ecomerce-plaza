@@ -1,5 +1,6 @@
 import React, {useState, useEffect, createContext} from "react"
 import {Link} from "react-router-dom";
+import {getFirestore, doc, collection, getDocs} from "firebase/firestore"
 
 
 
@@ -11,9 +12,42 @@ export default function CartContext({children}){
     const[quantity, setQuantity] = useState(0)
     const [productosAgregados, setProductosAgregados] = useState ([])
     const [totalPrice, setTotalPrice] = useState(0)
-    useEffect(() =>{
+   
+   /*  const[productos, setProductos] = useState([]);
 
-    },[])
+    useEffect(() => {
+        const db = getFirestore();
+        const collectionRef = collection(db, `products` );
+        getDocs(collectionRef).then((res)=>{ */
+
+        /*     let productosLimpios = []
+            res.docs.forEach((item) => {
+                console.log(item)
+                const obejtoLimpio ={...item.data(), id: item.id}
+                console.log(obejtoLimpio)
+                productosLimpios.push(obejtoLimpio)
+            })
+            setProductos(productosLimpios)
+ */
+            //const productosLimpios = res.docs
+
+            //const misObjetos = {...res.data(), id: res.id};
+            //setProductos(misObjetos)
+
+            //CON MAP
+      /*       let productosLimpios = res.docs.map((item) => {
+                
+                return {...item.data(), idproduct: item.id} // el return del map cambia/remplaza
+                
+            })
+            setProductos(productosLimpios)
+            console.log(productosLimpios)
+
+            
+        }).catch((e)=>{
+            console.log("error")
+        })
+    },[]) */
 
     const addToCart = (item, addQuantity) =>{
         console.log(addQuantity)

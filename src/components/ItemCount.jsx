@@ -14,61 +14,72 @@ import CartContext, { contexto } from "./CartContext";
 
 
 export default function ItemCount({item}) {
-
+    console.log(item)
     const {addToCart, summaryPrice} = useContext(contexto)
     const [contador, setContador] = useState(item.initial);
+  
+    console.log(contador)
 
     return (
     <>
-    <Card sx={{ maxWidth: 345, justifyContent: `center` }}>
-        <CardMedia
-          component="img"
-          height="140"
-          /* image="" */
-          alt={item.descripcion}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {item.idproduct}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {item.nombre}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Precio: ${item.precio}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Stock: {item.stock}
-          </Typography>
-        </CardContent>
-        <CardActions sx={{justifyContent: `center` }}>
-                  <Button  startIcon={<AddCircleIcon/>} size="small" onClick={() => {
-                    if (contador < item.stock) {
-                        setContador(contador + 1);
-                    }  
-                  }}></Button>
-                  <div>Cant: {contador} </div>
-                  <Button startIcon={<RemoveIcon/>} size="small" onClick={ () => {
-                    if (contador > 0) {
-                        setContador(contador - 1);
-                    }  
-                  }}></Button>
-            
-        </CardActions>
-      
-        <Button 
-        
-        onClick={() =>{ 
-          if (contador>0) {
-            addToCart(item, contador) 
-            console.log(contador)
-            /* summaryPrice() */
-          }
+     {
+      !item ? (
+        <div>Loading.. </div>
+      ):(
+        <>
+      <Card sx={{ maxWidth: 345, justifyContent: `center` }}>
+          <CardMedia
+            component="img"
+            height="140"
+            /* image="" */
+            alt={item.descripcion}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {item.idproduct}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {item.nombre}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Precio: ${item.precio}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Stock: {item.stock}
+            </Typography>
+          </CardContent>
+          <CardActions sx={{justifyContent: `center` }}>
+                    <Button  startIcon={<AddCircleIcon/>} size="small" onClick={() => {
+                      if (contador < item.stock) {
+                          setContador(contador + 1);
+                      }  
+                    }}></Button>
+                    <div>Cant: {contador} </div>
+                    <Button startIcon={<RemoveIcon/>} size="small" onClick={ () => {
+                      if (contador > 0) {
+                          setContador(contador - 1);
+                      }  
+                    }}></Button>
               
-        }}>Agregar al carrito</Button>
-        <Button ><Link to="/cart" >Ver carrito</Link></Button>
-        <Button><Link to={`/product/${item.idproduct}`} >Ver detalle producto</Link></Button>
-    </Card>
+          </CardActions>
+        
+          <Button 
+          
+          onClick={() =>{ 
+            if (contador>0) {
+              addToCart(item, contador) 
+              console.log(contador)
+              /* summaryPrice() */
+            }
+                
+          }}>Agregar al carrito</Button>
+          <Button ><Link to="/cart" >Ver carrito</Link></Button>
+          <Button><Link to={`/product/${item.idproduct}`} >Ver detalle producto</Link></Button>
+      </Card>
+    </>
+      )
+     }
+    
     </>
     );
   }

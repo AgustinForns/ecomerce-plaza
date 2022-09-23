@@ -87,21 +87,17 @@ function App() {
 
       <CartContext>
         <BrowserRouter>
-        <NavBar/> {/* pongoi los componentes que van siempre */}
+        <NavBar/> 
           <Routes>
-            <Route path='/' element={<ItemListContainer saludo={saludo} productos={productos}/>}></Route>
+            <Route path='/' element={<ItemListContainer saludo={saludo}/>}></Route>
             <Route path='/cart' element={<Cart/>}></Route>
-            <Route path='/category/:idcategory' element={<ItemListContainer saludo={saludo}  productos={productos}/>}></Route>
+            <Route path='/category/:idcategory' element={<ItemListContainer saludo={saludo}/>}></Route>
             <Route path='/product/:idproduct' element={<ItemDetailContainer productos={productos} />}></Route>
           </Routes>
         </BrowserRouter>
       </CartContext>
 
-      {/* <NavBar/> */}
-      {/* <ItemListContainer saludo={saludo}/>  */}
-      {/* <ItemCount stock={10} initial={1} onAdd={onAdd} /> */}
-     {/*  <ItemDetailContainer onAdd={onAdd}/> */}
-
+    
 
 
     </div>

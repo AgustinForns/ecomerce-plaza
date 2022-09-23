@@ -3,15 +3,15 @@ import ItemCount from "./ItemCount"
 
 
 export default function ItemDetail({item}){
-   
+   console.log(item)
     return(
         <>
    <div style={{margin:"10px", padding:"20px"}}>
      
-         {item.idproduct ? (
-             <ItemCount item ={item}/>
+         {!item ? (
+           <p>Loading...</p> 
          ):(
-             <p>Loading...</p>
+            <ItemCount item ={item}/>
          )}
    </div >
         </>

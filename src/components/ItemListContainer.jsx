@@ -64,7 +64,7 @@ export default function ItemListContainer({saludo}){
     },[idcategory] )
  */
 
-    console.log(!items)
+   
     return(
         <>
         <h1>{saludo()}</h1>

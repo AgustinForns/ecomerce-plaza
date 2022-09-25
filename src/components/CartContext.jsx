@@ -50,7 +50,7 @@ export default function CartContext({children}){
     },[]) */
 
     const addToCart = (item, addQuantity) =>{
-        console.log(addQuantity)
+    
    
 
         if (productosAgregados.some( productoAgregado => productoAgregado.idproduct == item.idproduct)) {
@@ -69,7 +69,7 @@ export default function CartContext({children}){
         }else{
            
             setProductosAgregados([...productosAgregados, {...item, quantityBuy: addQuantity}] )
-            console.log(productosAgregados)
+           
         }
     }
 

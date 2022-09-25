@@ -4,7 +4,6 @@ import ItemDetail from "./ItemDetail";
 
 export default function ItemList({items}){
 
-   console.log(items)
     return(
     <>      
      <div style={{display: `flex`, flexWrap:"wrap"}}>

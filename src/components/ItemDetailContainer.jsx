@@ -8,17 +8,16 @@ import {getFirestore, doc, collection, getDoc} from "firebase/firestore"
 export default function ItemDetailContainer(){
         const {idcategory, idproduct} = useParams ();
         const[item, setItem] = useState({})
-        console.log(idproduct)
+        
         
 
         useEffect(() => {
             const db = getFirestore();
             const productoRef = doc(db, `products`, `${idproduct}` );
             getDoc(productoRef).then((res)=>{
-                console.log(res.id)
-                console.log(res.data())
+                
 
-                const miObjeto = {...res.data(), id: res.id};
+                const miObjeto = {...res.data(), idproduct: res.id};
                 setItem(miObjeto)
                 
             })
@@ -48,7 +47,7 @@ export default function ItemDetailContainer(){
        
       
      */
-    console.log(item)
+
     
     return(
         <>  

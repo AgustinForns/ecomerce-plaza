@@ -8,7 +8,7 @@ import CartSummary from "./CartSummary";
 
 export default function Cart(){
     const {productosAgregados, clear, totalPrice, setTotalPrice} = useContext(contexto);
-    console.log(productosAgregados.length==0)
+
     return(
         <>
       <div>

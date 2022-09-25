@@ -14,16 +14,17 @@ import CartContext, { contexto } from "./CartContext";
 
 
 export default function ItemCount({item}) {
-    console.log(item)
+  
     const {addToCart, summaryPrice} = useContext(contexto)
     const [contador, setContador] = useState(item.initial);
-  
-    console.log(contador)
+
+
+
 
     return (
     <>
      {
-      !item ? (
+      !item.length === 0 ? (
         <div>Loading.. </div>
       ):(
         <>
@@ -52,6 +53,8 @@ export default function ItemCount({item}) {
                     <Button  startIcon={<AddCircleIcon/>} size="small" onClick={() => {
                       if (contador < item.stock) {
                           setContador(contador + 1);
+                          console.log(item.stock)
+                          console.log(contador)
                       }  
                     }}></Button>
                     <div>Cant: {contador} </div>
@@ -68,7 +71,7 @@ export default function ItemCount({item}) {
           onClick={() =>{ 
             if (contador>0) {
               addToCart(item, contador) 
-              console.log(contador)
+           
               /* summaryPrice() */
             }
                 

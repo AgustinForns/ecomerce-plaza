@@ -6,7 +6,7 @@ import ItemDetailCart from "./ItemDetailCart";
 
 export default function ItemListCart({productosAgregados}){
     
-    console.log(productosAgregados)
+  
     
   
     return(

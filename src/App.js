@@ -67,7 +67,7 @@ function App() {
                 
             })
             setProductos(productosLimpios)
-            console.log(productosLimpios)
+      
 
             
         }).catch((e)=>{

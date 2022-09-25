@@ -13,7 +13,7 @@ export default function ItemCart({item}){
     const [priceItem, setPriceItem] = useState(0)
     useEffect(()=>{
       setPriceItem(item.precio*item.quantityBuy)
-      console.log(priceItem)
+
     },[])
     return(
         <>

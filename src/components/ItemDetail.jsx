@@ -3,7 +3,7 @@ import ItemCount from "./ItemCount"
 
 
 export default function ItemDetail({item}){
-   console.log(item)
+    console.log(item)
     return(
         <>
    <div style={{margin:"10px", padding:"20px"}}>

@@ -18,6 +18,7 @@ import { contexto } from "./components/CartContext";
 import CartContext from "./components/CartContext";
 import Cart from "./components/Cart";
 import {getFirestore, doc, collection, getDocs} from "firebase/firestore"
+import Comprar from './components/Comprar';
 
 
 /* const productosHC = [
@@ -92,7 +93,8 @@ function App() {
             <Route path='/' element={<ItemListContainer saludo={saludo}/>}></Route>
             <Route path='/cart' element={<Cart/>}></Route>
             <Route path='/category/:idcategory' element={<ItemListContainer saludo={saludo}/>}></Route>
-            <Route path='/product/:idproduct' element={<ItemDetailContainer productos={productos} />}></Route>
+            <Route path='/product/:idproduct' element={<ItemDetailContainer />}></Route>
+            <Route path='/comprar' element={<Comprar/>}></Route>
           </Routes>
         </BrowserRouter>
       </CartContext>

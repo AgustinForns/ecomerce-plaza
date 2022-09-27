@@ -27,6 +27,8 @@ export default function Cart(){
                               <CartSummary totalPrice={totalPrice}/>
                               
                               <ItemListCart productosAgregados={productosAgregados}/>
+
+                              <Button><Link to="/comprar">TERMINAR COMPRA</Link> </Button>
                            </>
                       )
                   

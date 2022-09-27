@@ -39,7 +39,6 @@ export default function NavBar(){
             <Button color="inherit"><Link to="/category/Decoracion"> Decoración </Link></Button>
             <Button color="inherit"><Link to="/category/Vestimenta"> Vestimenta </Link></Button>
             <Button color="inherit"><Link to="/category/RopaDeCama"> Ropa de cama </Link></Button>
-            {/* <Button color="inherit"><Link to="/product/:idproduct"> Oferta del dia </Link></Button> */}
             <CartWidget/>       
             <Button color="inherit">Login</Button>
           </Toolbar>

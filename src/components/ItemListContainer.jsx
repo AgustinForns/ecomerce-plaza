@@ -1,13 +1,43 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useContext} from "react"
 import ItemList from "./ItemList"
 import {useParams} from "react-router-dom";
-import {getFirestore, docs, collection, getDocs} from "firebase/firestore"
+import {getFirestore, collection, getDocs} from "firebase/firestore"
+import Button from '@mui/material/Button';
+import {Link} from "react-router-dom";
+import "../App.css"
+
+import { contexto } from "./CartContext";
 
 
-export default function ItemListContainer({saludo}){
+
+export default function ItemListContainer(){
     
-    const {idcategory, idproduct} = useParams ();
+    const {idcategory} = useParams ();
     const [items, setItems] = useState([])
+    const[error, setError] = useState(``)
+    const[loading, setLoading] = useState(true);
+
+
+    const {productosAgregados} = useContext(contexto);
+    const [summaryP, setSummaryP] = useState(0)
+    const [display, setDisplay] = useState("none")
+
+    useEffect(() =>{
+        let suma =0
+        productosAgregados.forEach((productoAgregado) => {
+        
+            suma += productoAgregado.quantityBuy
+        });
+        setSummaryP(suma)
+        setDisplay(()=>{
+            if (summaryP === 0) {
+                return "none"
+            } else {
+                return "flex"
+            }
+        })
+           
+    },[productosAgregados, summaryP])
 
 
     useEffect(() => {
@@ -27,54 +57,39 @@ export default function ItemListContainer({saludo}){
                     setItems(productosLimpios)  
                     ) : (
                     //EN UN CATEGORIA PUNTUAL
-                    setItems(productosLimpios.filter((product) => product.idcategory == idcategory))
+                    setItems(productosLimpios.filter((product) => product.idcategory === idcategory))
                     )
                 )  
             }
                    
+        }).catch((e)=>{
+            setError(e)
+        }).finally(()=>{
+            setLoading(false);
         })
     },[idcategory])
     
 
 
-  /*   let promesaItems = new Promise((res, rej) =>{
-        setTimeout(() => {
-            console.log(productos)
-            res(productos)
-        }, 3000);
-    }); 
-  
-
-    useEffect(() =>{
-        console.log(idcategory)
-        promesaItems.then((res) =>{
-            (!idcategory ? (
-                //HOME
-                setItems(res)
-               
-                
-                ) : (
-                //EN UN CATEGORIA PUNTUAL
-                setItems(res.filter((product) => product.idcategory == idcategory))
-          
-                )
-            )
-        console.log(items)
-        })
-    },[idcategory] )
- */
-
-   
     return(
         <>
-        <h1>{saludo()}</h1>
-        {
-            items == 0 ? (
-                <div>Loading..</div>
-            ) : (
-                <ItemList items={items} />
-            )
-        }
+        <div style={{display:`flex`, flexDirection:`column`, justifyContent:`center`, paddingBottom:`20px`}}>
+        <div style={{color:" rgb(90, 89, 105)", fontSize:`20px`, backgroundColor: "burlywood", border: 1, borderRadius: 50, margin:`20px`}}>A tu alcance lo que más necesitas</ div>
+        <div>
+            <p>{error && error}</p>
+        </div>
+           
+            {
+                loading ? (
+                    <div style={{height:`100vh`}}>Loading..</div>
+                ) : (
+                    <div>
+                        <Button ><Link to="/cart" className="link" style={{ display:display, backgroundColor: "burlywood", border:1, borderRadius:40, padding:`10px`}}>Ver carrito</Link></Button>
+                        <ItemList items={items} />
+                    </div>
+                )
+            }
+        </div>
             
         
         </>

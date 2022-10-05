@@ -1,8 +1,11 @@
 import React, {useState, useEffect, useContext} from "react"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
-import {Link} from "react-router-dom";
 import { contexto } from "./CartContext";
+import {Link} from "react-router-dom";
+import "../App.css"
+
+
 
 export default function CartWidget(){
     const {productosAgregados} = useContext(contexto);
@@ -17,25 +20,25 @@ export default function CartWidget(){
         });
         setSummaryP(suma)
         setDisplay(()=>{
-            if (summaryP == 0) {
+            if (summaryP === 0) {
                 return "none"
             } else {
                 return "flex"
             }
         })
            
-    },)
+    },[productosAgregados, summaryP])
 
 
  
 
 
     return(
-            <Button startIcon={<ShoppingCartIcon color="action"/>} sx={{color: `black`, display:display}}><Link to="./cart">
+            <Button startIcon={<ShoppingCartIcon color="action"/>} sx={{color: `black`, display:display}}><Link to="/cart" className="link"  >
              {summaryP} 
             </Link></Button>
        
 
     )
-
+    
 }

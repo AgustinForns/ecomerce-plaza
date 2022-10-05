@@ -1,18 +1,13 @@
-import React, {useState, useEffect, useContext} from "react"
-import ItemDetail from "./ItemDetail";
-import CartContext, { contexto } from "./CartContext";
+import React from "react"
 import ItemDetailCart from "./ItemDetailCart";
 
 
 export default function ItemListCart({productosAgregados}){
-    
-  
-    
   
     return(
     <>      
        
-        <div style={{display:"flex"}}>
+        <div style={{display:"flex", flexDirection:`row`, justifyContent:`center`, alignContent:`center` , flexWrap:"wrap", paddingBottom:`90px`}}>
              {
              productosAgregados ?     
              (productosAgregados.map((item)=>(  

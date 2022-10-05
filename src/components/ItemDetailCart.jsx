@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from "react"
+import React from "react"
 import ItemCart from "./ItemCart";
-import ItemCount from "./ItemCount";
+
 
 
 export default function ItemDetailCart({item}){
    
     return(
         <>
-          <div style={{margin:`10px`, padding:`20px`}}>
+          <div style={{display:`flex`, flexDirection:`column`, margin:`10px`, padding:`20px`}}>
               {item ? (
                   <ItemCart  item ={item} />
                       

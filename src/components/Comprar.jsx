@@ -1,33 +1,15 @@
 import React, {useState, useEffect, useContext} from "react"
 import {Link} from "react-router-dom";
-import { addDoc,collection, getFirestore } from "firebase/firestore";
+import { addDoc,collection, getFirestore , doc, updateDoc} from "firebase/firestore";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { contexto } from "./CartContext";
-import { alpha } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { visuallyHidden } from '@mui/utils';
-import CardContent from '@mui/material/CardContent';
-import { type } from "@testing-library/user-event/dist/type";
+import validator from 'validator'
+import "../App.css"
+
+
 
 
 
@@ -39,54 +21,62 @@ export default function Comprar( ){
     const [tel, setTel] = useState ("")
     const [idCompra, setIdCompra] = useState ("")
     const [cartelito, setCartelito] = useState ("")
-   /*  const [apagarBoton, setApagarBoton] = useState (false) */
     const[order, setOrder] = useState({})
     const[mostrarBoton, setMostrarBoton] = useState("block")
+    const[mostrarCartel, setMostrarCartel] = useState("none")
 
-    const {productosAgregados, clear, totalPrice, setTotalPrice} = useContext(contexto);
-    console.log(productosAgregados)
+    const {productosAgregados,  totalPrice,  mostrarAlerta, clear} = useContext(contexto);
 
-/*     useEffect(()=>{
-        setApagarBoton(true)
-    },[apagarBoton])
-    */
     
     useEffect(()=>{
         setOrder({
-            buyer: { name: nombre+``+apellido, phone: tel, emai: email }, 
+            buyer: { name: nombre+``+apellido, phone: tel, email: email }, 
             items: productosAgregados,
             total: totalPrice,
             } )
-    },[nombre, apellido, tel, email])
+    },[nombre, apellido, tel, email, totalPrice, productosAgregados])
     
     const comprar = () => {
       
-        if (!nombre || !tel || !email){
+        if (!nombre || !apellido || !tel || !email || !(validator.isEmail(email))){
             setCartelito("Revisa los datos y vuelve a intentar")
-        } else {
             
+        } else {
+          
+            setMostrarCartel("block")
             setMostrarBoton("none")
-            console.log(order) 
             const db = getFirestore()
             const miCollection = collection(db, `orders`)
-            console.log(miCollection)
             addDoc(miCollection, order).then(({id})=>{
-                setIdCompra(id)
-                console.log(order)
+                    setIdCompra(id)
+                    setMostrarCartel("none")
+                
             }).catch((e)=>{
-               console.log("error")
-            })       
-   
+                mostrarAlerta("error","Ups..","Hubo un problema. Vuelve a intentarlo")
+            }).finally(()=>{
+                const db = getFirestore()
+
+                let productChange
+                productosAgregados.forEach(item => {
+                    productChange = doc(db, `products`, `${item.idproduct}`)
+                    updateDoc(productChange, {stock: item.stock - item.quantityBuy})
+                    
+                  
+                });
+                
+            })
         }
     }
-    console.log(idCompra)
+
     return(
 
-        <div>
+        <div style={{padding:`90px`, paddingBottom:`175px`}}>
         
          {
-            idCompra=="" ? (
+            idCompra==="" ? (
                
+              
+
                 <Box
                 sx={{
                     display: 'flex',
@@ -95,7 +85,8 @@ export default function Comprar( ){
                     '& > :not(style)': { m: 1 },
                 }}
                     >
-                    {cartelito && "ERROR: " + cartelito}
+                    <p style={{margin:`10px`}}>{cartelito && "ERROR: " + cartelito}</p>
+                    
                     <TextField
                         sx={{display:``}}
                         helperText="Ingresa tu nombre"
@@ -132,15 +123,24 @@ export default function Comprar( ){
                     <Button variant="outlined" sx={{display:`${mostrarBoton}`}} onClick={()=>{
                         comprar()
                     }}>Terminar compra</Button>
+                    <Typography  variant="h5" component="div" sx={{display:`${mostrarCartel}`}} >
+                       Espera...
+                    </Typography>
+                    
                 </Box> 
                
             ) : (
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        Felicidades {order.buyer.name}! Tu orden de compra fue realizada por un total de ${totalPrice}.
-                        El Nº de orden de compra es: {idCompra}
-                    </Typography>
-                </CardContent>
+                
+                    <div style={{display:`flex`, justifyContent:`center`, flexDirection:`column`, paddingBottom:`290px`}}>
+                        <Typography gutterBottom variant="h5" component="div" sx={{padding:`10px`}}>
+                            Felicidades {order.buyer.name}! Tu orden de compra fue realizada por un total de ${totalPrice}.
+                            El Nº de orden de compra es: {idCompra}
+                        </Typography>
+                        <Button onClick={()=>{clear()}} sx={{color:` rgb(90, 89, 105)`,  backgroundColor: "burlywood", border:1, borderRadius:40, padding:`10px`}}> <Link to="/" className="link" >Ir a inicio</Link></Button>
+                        
+
+                    </div>
+                
             )
         } 
          

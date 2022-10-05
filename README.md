@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Plaza - e-commerce
+El proyecto consta de un e-commerce que simula la venta de articulos tipos Bazar y otros productos hogareños por una empresa llamada "Plaza".
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
+1. [General Info](#general-info)
+2. [Technologies](#technologies)
+3. [Installation](#installation)
+4. [Collaboration](#collaboration)
 
-## Available Scripts
 
-In the project directory, you can run:
+## General Info
+Este proyecto es un trabajo final para el curso React JS dictado por la institucón CODERHOUSE.
+El mismo consta en aplicar todos los conocimiento adquiridos en un sitio web donde se produzca la simulación de una compra por parte del cliente.
+En este sitio web se deben poder listar todos los productos y filtrarlos por categoria y productos únicos.
+Una vez definido el "Carro" con los distintos productos seleccionados por el comprador se simula el envìo de un formulario para terminar la compra. Si se completa exitosamente el formualrio, se actualiza el stock teniendo en cuenta las cantidades compradas. Si que no quedó stock de algún producto, en la cartela aparecerá un cartel indicándolo y no dejando añadir ese producto al carro.
 
-### `npm start`
+## Technologies
+Como editor de codigo se utilizó [Visual Studio Code](https://code.visualstudio.com/)
+El proyecto se realizó con:
+* [React JS](https://es.reactjs.org/)
+* [HTML]()
+* [JavaScript]()
+* [Material UI](https://mui.com/)
+* [Sweet Alert 2](https://sweetalert2.github.io/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Instalation
+Comenzamos instalando el software necesario, NodeJS, npm, etc. Luego con el comando "npx create-react-app" para generar la estructura básica de un proyecto ReactJS.
+Para inicializar el proyecto, se introduce en la consola (con dirección de la carpeta del proyecto) "npm start"
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Collaboration
+Este proyecto fue creado por Luis Agustín Forns.
+Email: agustinforns@gmail.com
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

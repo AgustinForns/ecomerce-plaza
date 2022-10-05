@@ -1,11 +1,14 @@
 import React, {useState, useEffect, useContext} from "react"
-import CartContext, { contexto } from "./CartContext";
+import { contexto } from "./CartContext";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {Link} from "react-router-dom";
+import "../App.css"
+
+
 
 
 export default function ItemCart({item}){
@@ -21,14 +24,11 @@ export default function ItemCart({item}){
           <CardMedia
             component="img"
             height="140"
-            /* image="" */
+            image={item.img} 
             alt={item.descripcion}
           />
           <CardContent sx={{align:`center`}}>
-            <Typography gutterBottom variant="h5" component="div">
-              {item.idproduct}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="h5" color="text.secondary">
               {item.nombre}
             </Typography>
             <Typography variant="body2" color="text.secondary">
@@ -40,10 +40,11 @@ export default function ItemCart({item}){
             
           </CardContent>
           <Button 
+          sx={{color:` rgb(90, 89, 105)` }}
           onClick={() =>{
             removeItem(item)
           }}>Remove Item</Button>
-          <Button><Link to={`/product/${item.idproduct}`} >Ver detalle</Link></Button>
+          <Button><Link to={`/product/${item.idproduct}`} className="link"  >Ver detalle</Link></Button>
       </Card>
    
     </>

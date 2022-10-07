@@ -1,5 +1,8 @@
-<video src=".../src/docs/video" autoplay loop muted> crefgerg</video>
 
+
+![React-App-and-1-more-page-Personal-Microsoft_-Edge-2022-10-07-11-09-43](https://user-images.githubusercontent.com/103077691/194576971-8a2ea899-94db-47f9-b38d-501495845533.gif)
+
+![React-App-and-1-more-page-Personal-Microsoft_-Edge-2022-10-07-11-14-39](https://user-images.githubusercontent.com/103077691/194578180-e5c7ba84-cba1-4dda-930c-c2ae4b8b4292.gif)
 
 
 # Plaza - e-commerce

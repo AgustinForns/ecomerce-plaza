@@ -70,7 +70,7 @@ export default function Comprar( ){
 
     return(
 
-        <div style={{padding:`90px`, paddingBottom:`175px`}}>
+        <div style={{padding:`90px`, paddingBottom:`210px`}}>
         
          {
             idCompra==="" ? (

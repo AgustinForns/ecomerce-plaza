@@ -8,17 +8,10 @@ import "../App.css"
 
 
 export default function CartWidget(){
-    const {productosAgregados} = useContext(contexto);
-    const [summaryP, setSummaryP] = useState(0)
+    const {productosAgregados , summaryP} = useContext(contexto);
     const [display, setDisplay] = useState("none")
 
     useEffect(() =>{
-        let suma =0
-        productosAgregados.forEach((productoAgregado) => {
-        
-            suma += productoAgregado.quantityBuy
-        });
-        setSummaryP(suma)
         setDisplay(()=>{
             if (summaryP === 0) {
                 return "none"

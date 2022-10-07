@@ -73,7 +73,7 @@ export default function ItemListContainer(){
 
     return(
         <>
-        <div style={{display:`flex`, flexDirection:`column`, justifyContent:`center`, paddingBottom:`20px`}}>
+        <div style={{display:`flex`, flexDirection:`column`, justifyContent:`center`, paddingBottom:`95px`}}>
         <div style={{color:" rgb(90, 89, 105)", fontSize:`20px`, backgroundColor: "burlywood", border: 1, borderRadius: 50, margin:`20px`}}>A tu alcance lo que más necesitas</ div>
         <div>
             <p>{error && error}</p>

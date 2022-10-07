@@ -21,6 +21,8 @@ export default function CartContext({children}){
     const[quantity, setQuantity] = useState(0)
     const [productosAgregados, setProductosAgregados] = useState(prodLocalStorage)
     const [totalPrice, setTotalPrice] = useState(0)
+    const [summaryP, setSummaryP] = useState(0)
+
 
     const mostrarAlerta = (type, titulo, msg) =>{
         swal(
@@ -100,11 +102,22 @@ export default function CartContext({children}){
 
     },[productosAgregados])
 
+    useEffect(() =>{
+        let suma =0
+        productosAgregados.forEach((productoAgregado) => {
+        
+            suma += productoAgregado.quantityBuy
+        });
+        setSummaryP(suma)
+
+           
+    },[productosAgregados, summaryP])
+
 
     return(
         <>
       
-            <contexto.Provider value={{productosAgregados, setProductosAgregados, removeItem, addToCart, clear, quantity, setQuantity, totalPrice, setTotalPrice}}>
+            <contexto.Provider value={{productosAgregados, setProductosAgregados, removeItem, addToCart, clear, quantity, setQuantity, totalPrice, setTotalPrice, summaryP}}>
                 {children}        
             </contexto.Provider>
        

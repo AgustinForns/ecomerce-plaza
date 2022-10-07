@@ -1,3 +1,7 @@
+<video src=".../src/docs/video" autoplay loop muted> crefgerg</video>
+
+
+
 # Plaza - e-commerce
 El proyecto consta de un e-commerce que simula la venta de articulos tipos Bazar y otros productos hogareños por una empresa llamada "Plaza".
 
@@ -20,8 +24,11 @@ El proyecto se realizó con:
 * [React JS](https://es.reactjs.org/)
 * [HTML]()
 * [JavaScript]()
-* [Material UI](https://mui.com/)
-* [Sweet Alert 2](https://sweetalert2.github.io/)
+* [Firebase]()
+
+Liberias utilizadas:
+* [Material UI](https://mui.com/): para el diseño general del proyecto y lograr un sitio web responsive. Es muy utilizado hoy en dìa en el mundo profesional de React.
+* [Sweet Alert 2](https://sweetalert2.github.io/): para la emisión simple de mensajes de alerta.
 
 ## Instalation
 Comenzamos instalando el software necesario, NodeJS, npm, etc. Luego con el comando "npx create-react-app" para generar la estructura básica de un proyecto ReactJS.

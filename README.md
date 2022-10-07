@@ -3,6 +3,7 @@
 ![React-App-and-1-more-page-Personal-Microsoft_-Edge-2022-10-07-11-09-43](https://user-images.githubusercontent.com/103077691/194576971-8a2ea899-94db-47f9-b38d-501495845533.gif)
 
 ![React-App-and-1-more-page-Personal-Microsoft_-Edge-2022-10-07-11-14-39](https://user-images.githubusercontent.com/103077691/194578180-e5c7ba84-cba1-4dda-930c-c2ae4b8b4292.gif)
+![React-App-and-1-more-page-Personal-Microsoft_-Edge-2022-10-07-13-52-56](https://user-images.githubusercontent.com/103077691/194611153-293e2897-1dce-4be6-afa0-7fab4a8ac208.gif)
 
 
 # Plaza - e-commerce
